@@ -1,4 +1,4 @@
-#assigment
+# assigment
 Write a simple class in node.js  to represent a deck of cards with operations to shuffle the deck and to deal one card.
 
 While not a requirement today, a likely future enhancement is the need to deal all the cards in a deck.
@@ -11,7 +11,7 @@ We're just trying to see the tools in your toolbox that you'd use to slice this 
 
 One of our developers spent two hours defining a solution. We would expect you to take around the same amount of time
 
-#Postmortem
+# Postmortem
 
 I approached the problem with an overall look for simplicity.
 Given the nature of th problem, I chose to use a functional "style" paradigm.
@@ -26,7 +26,7 @@ One area that is bothersome is the `ops.deal` function. Should this function be 
 To stay true to principles, it would be nice for it to not change the deck - but for correctness in the concept of dealing a card, it should mutate the deck array/obj.
 
 Ops Object:
-For absolute simplicty I chose to add predicate functions in an object within the same file as my code -  in practice i'd separate those into another module
+For absolute simplicity I chose to add predicate functions in an object within the same file as my code -  in practice i'd separate those into another module
 
 Code Style:
 I chose to use the default code style that comes with WebStorm - I am used to not using semi-colons - but for simplicity chose to just keep as default
