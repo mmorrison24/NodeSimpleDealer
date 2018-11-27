@@ -10,10 +10,27 @@ const ops = {
             return  ops.pickInRage(deckClone, deckClone.length - i )
         });
     },
-    deal : ( deck /*, isFullDeckDeal = false*/ ) => {
+    deal : ( deck, isFullDeckDeal = false, numPlayers = 4 ) => {
         // deals card from the top or bottom of the deck
-        return deck.shift()
+        let deckLen = deck.length;
+        if (!isFullDeckDeal)
+            return deck.shift();
 
+        const hands = {};
+        if(numPlayers <= 0 || numPlayers > deckLen)
+            numPlayers = 4;
+
+        while(deckLen--) {
+            const id = deckLen % (numPlayers);
+
+            if ( !Array.isArray( hands[id] ) ){
+                hands[id] = [ ]
+            }
+            hands[id].push(deck.shift())
+
+        };
+
+        return hands;
     }
 };
 
@@ -31,8 +48,8 @@ class CardDeck {
         this.deck = ops.shuffle( this.deck );
     }
 
-    deal() {
-        return ops.deal( this.deck );
+    deal(isFullDeckDeal, numPlayers) {
+        return ops.deal( this.deck, isFullDeckDeal, numPlayers );
     }
 }
 
@@ -43,7 +60,9 @@ class CardDeck {
     //console.log(shuffled); // this is a shallow copied deck that is shuffled
 
     game.shuffle();
+
     console.log(game.deal());
-    console.log(game);
+    console.log(ops.deal(shuffled,true, 3));
+
 })();
 

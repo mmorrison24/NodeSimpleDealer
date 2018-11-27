@@ -25,13 +25,16 @@ I also chose to write my own shuffle function, but in practice I would have used
 #### Mutable?:
 
 One area that is bothersome is the `ops.deal` function. Should this function be idempotent and not mutate the deck?
-To stay true to principles, it would be nice for it to not change the deck - but for correctness in the concept of dealing a card, I thought best to mutate the deck array/obj and `shift` instead of `slice`.
+To stay true to principles, it would be nice for it to not change the deck - but for correctness in the concept of dealing a card.
 
 #### Simplicity vs Completeness:
 
 In my interpretation of the spirit of the guidelines, and leveraging the functional nature of the code - I thought it best to have my `CardDeck` class mostly representing a deck's data structure. This allows extensibility as the `ops` functions are now applicable for other deck types (uno cards, magic cards), and not tied to any particular data structure or implementation of a deck concept. While also being simpler to reason about.
 
 In addition, the code structure encourages good best practices and solves the problem surface area quite efficiently without adding undo code. Code vs simplicity I thought this was a good compromise. If needed in the future, a `Game` class could be added to represent players, and hold player hands etc. 
+
+#### error checking:
+Error checking is minimal, an improvement would really be helpful around the deal function , where some corner cases may arise - with different levels of severity - aka dealing to negative number of players, and handling invalid input
 
 #### Ops Object:
 
